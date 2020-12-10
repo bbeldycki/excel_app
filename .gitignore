@@ -1,0 +1,6 @@
+mypython/
+*.pyc
+__pycache__/
+*~
+instance/
+
