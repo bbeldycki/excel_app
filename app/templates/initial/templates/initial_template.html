@@ -15,7 +15,13 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
-
+  <div class="container">
+    <h1>Excel Apps</h1>
+    <p>This app is used to process excel files and has two built-in functionalities sa far. The first one is for
+    removing unnecessary columns in your excel files. The second on will merge many excel files into one while
+    keeping all original options and formatting.
+    <br>
+    </p>
     <main>
         {% block main %}{% endblock %}
     </main>
@@ -28,5 +34,6 @@
     WK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
     <!-- <script src="{{ url_for('static', filename='js/app.js')}}"></script> !-->
+  </div>
   </body>
 </html>

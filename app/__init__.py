@@ -1,17 +1,16 @@
 from flask import Flask, render_template
-from pathlib import Path
 import os
 
 
 def create_app():
     app = Flask(__name__)
     path = "app/static/filesuploaded"
+    path1 = "app/static/col_rm_final"
     try:
         os.makedirs(path)
+        os.makedirs(path1)
     except OSError:
         pass
-    data_folder = Path(path)
-    app.config['upload_catalog'] = data_folder
     app.config['SECRET_KEY'] = 'argagathtrhwtrh'
 
     @app.route('/')

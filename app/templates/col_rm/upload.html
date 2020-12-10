@@ -5,29 +5,18 @@
 {% endblock %}
 
 {% block main %}
-    <div class="container">
-        <div class="col">
-            <h1>Column Remover</h1>
-            <p>The purpose of this functionality is to take two files (.txt file and .xlsx files) and create an
-            output file which will contain only columns with headers from the .txt file while keeping all original
-            options and formatting. All changes will only affect the data in first sheet of the excel files.
-            <br>
-            </p>
-            <form action="/clupload" method="POST" enctype="multipart/form-data">
-                <dl>
-                    <input type="file" name="file" value="Choose files" required>
-                    <input type="file" name="file1" value="Choose files" required>
-                </dl>
-                <p></p>
-                <input type="submit" value="Upload files">
-            </form>
-            <br>
-            <h4> List of uploaded files </h4>
-            {% for file in filse %}
-                <li>{{ file }} </li>
-            {% endfor %}
-            <br>
-            <input type="submit" value="Remove Columns">
-        </div>
-    </div>
+<form action="/clupload" method="POST" enctype="multipart/form-data">
+<dl>
+    <input type="file" name="file" value="Choose files" required>
+    <input type="file" name="file1" value="Choose files" required>
+</dl>
+<p></p>
+<input type="submit" value="Upload files"></form>
+<br>
+<h4> List of uploaded files </h4>
+{% for file in filse %}
+    <li>{{ file }} </li>
+{% endfor %}
+<br>
+<input type="submit" value="Remove Columns">
 {% endblock %}
