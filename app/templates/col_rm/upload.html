@@ -1,0 +1,25 @@
+{% extends "col_rm/templates/col_rm_template.html" %}
+
+{% block title %}
+    Column Remover
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="col">
+            <h1>Column Remover</h1>
+            <p>The purpose of this functionality is to take two files (.txt file and .xlsx files) and create an
+            output file which will contain only columns with headers from the .txt file while keeping all original
+            options and formatting. All changes will only affect the data in first sheet of the excel files.
+            </p>
+            <hr>
+            <form action="/clupload" method="POST" enctype="multipart/form-data">
+                <dl>
+                <input type="file" name="files[]" autocomplete="off" multiple="True"
+                           value="Choose files" required>
+                </dl>
+                <input type="submit" value="Upload">
+            </form>
+        </div>
+    </div>
+{% endblock %}
