@@ -15,10 +15,21 @@ def allowed_files(filename):
 @bp.route('/clupload', methods=["GET", "POST"])
 def clupload():
     if request.method == "POST":
-        if 'files[]' not in request.files:
+
+        if 'file' not in request.files:
             flash('No file part')
             return redirect(request.url)
-        files = request.files.getlist('files[]')
+
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+
+        filse = request.files['file']
+        filse1 = request.files['file1']
+        # if 'file[]' not in request.files:
+        #    flash('No file part')
+        #    return redirect(request.url)
+        files = [filse, filse1]
         print(files)
         for file in files:
             if file.filename == '':
@@ -29,14 +40,12 @@ def clupload():
             if file.filename.rsplit('.', 1)[1].lower() not in allowed_extensions:
                 files.remove(file)
 
-        print(Path("app/static/filesuploaded"))
+        filenames = []
         for file in files:
             if file and allowed_files(file.filename):
                 filename = secure_filename(file.filename)
+                filenames.append(filename)
                 file.save(os.path.join(Path("app/static/filesuploaded"), filename))
 
-        flash('Files uploaded!')
-        # return render_template("col_rm/upload.html")
-        return redirect(request.url)
+        return render_template("col_rm/upload.html", filse=filenames)
     return render_template("col_rm/upload.html")
-

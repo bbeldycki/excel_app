@@ -13,7 +13,6 @@ def create_app():
     data_folder = Path(path)
     app.config['upload_catalog'] = data_folder
     app.config['SECRET_KEY'] = 'argagathtrhwtrh'
-    print(app.config['upload_catalog'])
 
     @app.route('/')
     def hello():
