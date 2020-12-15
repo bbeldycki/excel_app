@@ -5,9 +5,18 @@
 {% endblock %}
 
 {% block main %}
-<input type="submit" value="Download final file">
+<form method="get" action="/download/">
+    <input type="submit" value="Download final file!">
+</form>
+{% if filse %}
+    <li>{{ filse }} </li>
+{% endif %}
 <br>
-<input type="submit" value="Home">
+<form method="get" action="/clupload">
+    <input type="submit" value="I want to remove again!">
+</form>
 <br>
-<input type="submit" value="I want to remove again!">
+<form method="get" action="/">
+    <input type="submit" value="Home">
+</form>
 {% endblock %}

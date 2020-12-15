@@ -6,17 +6,38 @@
 
 {% block main %}
 <form action="/clupload" method="POST" enctype="multipart/form-data">
-<dl>
-    <input type="file" name="file" value="Choose files" required>
-    <input type="file" name="file1" value="Choose files" required>
-</dl>
-<p></p>
-<input type="submit" value="Upload files"></form>
+    <dl>
+        <input type="file" name="file" value="Choose files" required>
+        <input type="file" name="file1" value="Choose files" required>
+    </dl>
+    <p></p>
+    <input type="submit" value="Upload files">
+</form>
 <br>
 <h4> List of uploaded files </h4>
-{% for file in filse %}
-    <li>{{ file }} </li>
-{% endfor %}
+{% if wrong %}
+    {% if numfiles %}
+        {% if fext %}
+        <p>Wrong number of valid files. There should be one .txt file and one .xlsx file. You missed .xlsx file.</p>
+        {% else %}
+        <p>Wrong number of valid files. There should be one .txt file and one .xlsx file. You missed .txt file.</p>
+        {% endif %}
+    {% else %}
+        {% if fext %}
+        <p>You are trying upload two .txt files instead of one .txt file and one .xlsx file.</p>
+        {% else %}
+        <p>You are trying upload two .xlsx files instead of one .txt file and one .xlsx file.</p>
+        {% endif %}
+    {% endif %}
+{% else %}
+    {% for file in filse %}
+        <li>{{ file }} </li>
+    {% endfor %}
+{% endif %}
 <br>
-<input type="submit" value="Remove Columns">
+{% if lfse %}
+<form method="get" action="/removed">
+    <input type="submit" value="Remove Columns">
+</form>
+{% endif %}
 {% endblock %}
