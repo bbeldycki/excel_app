@@ -1,8 +1,9 @@
 from flask import Flask, render_template
 import os
 
-path = "app/static/filesuploaded"
-path1 = "app/static/col_rm_final"
+
+path = os.getcwd() + "\\app\\static\\filesuploaded"
+path1 = os.getcwd() + "\\app\\static\\col_rm_final"
 
 
 def create_app():

@@ -8,8 +8,8 @@ bp = Blueprint('colclear', __name__)
 
 allowed_extensions = set(['txt', 'xlsx'])
 
-path = "app/static/filesuploaded"
-path1 = "app/static/col_rm_final"
+path = os.getcwd() + "\\app\\static\\filesuploaded"
+path1 = os.getcwd() + "\\app\\static\\col_rm_final"
 
 
 def allowed_files(filename):
@@ -91,16 +91,12 @@ def removed():
 @bp.route('/download/')
 def download_file():
     dirs = os.listdir(path1)
-    finalf = path1 + '/' + dirs[0]
-    print(path1, '/', finalf)
-    path2 = "static/col_rm_final"
     finalf = dirs[0]
     try:
-        send_from_directory(path2, filename=finalf, as_attachment=True)
+        send_from_directory(path1, filename=finalf, as_attachment=True)
         return render_template("col_rm/removed.html")
     except FileNotFoundError:
-        return render_template("col_rm/removed.html", filse=finalf)
-    return render_template("col_rm/removed.html")
+        abort(404)
 
 
 def get_all_good_headers(txtfile):
