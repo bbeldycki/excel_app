@@ -8,8 +8,11 @@ bp = Blueprint('colclear', __name__)
 
 allowed_extensions = set(['txt', 'xlsx'])
 
-path = os.getcwd() + "\\app\\static\\filesuploaded"
-path1 = os.getcwd() + "\\app\\static\\col_rm_final"
+path = "app/filesuploaded"
+path1 = "app/col_rm_final"
+# for pythonanywhere paths
+# path = "/home/Flippy9004/excel_app/app/static/filesuploaded"
+# path1 = "/home/Flippy9004/excel_app/app/static/col_rm_final"
 
 
 def allowed_files(filename):
@@ -88,13 +91,10 @@ def removed():
     return render_template("col_rm/removed.html", filse=filename)
 
 
-@bp.route('/download/')
-def download_file():
-    dirs = os.listdir(path1)
-    finalf = dirs[0]
+@bp.route("/download/<string:file_name>")
+def download_file(file_name):
     try:
-        send_from_directory(path1, filename=finalf, as_attachment=True)
-        return render_template("col_rm/removed.html")
+        return send_from_directory("col_rm_final", filename=file_name, as_attachment=True)
     except FileNotFoundError:
         abort(404)
 
@@ -134,7 +134,7 @@ def remove_columns(txtfile, xlsxfile):
             sh0.delete_cols(i)
             number_of_columns -= 1
     finalname = xlsxfile.rsplit(".", 1)
-    finale = finalname[0]+"_final.xlsx"
+    finale = finalname[0] + "_final.xlsx"
     wbf.save(path1 + '/' + finale)
     os.remove(txtfile)
     os.remove(excel)

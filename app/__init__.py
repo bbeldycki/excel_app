@@ -2,8 +2,11 @@ from flask import Flask, render_template
 import os
 
 
-path = os.getcwd() + "\\app\\static\\filesuploaded"
-path1 = os.getcwd() + "\\app\\static\\col_rm_final"
+path = "app/filesuploaded"
+path1 = "app/col_rm_final"
+# for pythonanywhere paths
+# path = "/home/Flippy9004/excel_app/app/static/filesuploaded"
+# path1 = "/home/Flippy9004/excel_app/app/static/col_rm_final"
 
 
 def create_app():
