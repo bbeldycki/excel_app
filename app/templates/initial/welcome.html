@@ -5,12 +5,13 @@
 {% endblock %}
 
 {% block main %}
-<div class="row">
-    <a class="action" href="{{ url_for('colclear.clupload')}}">Column Remover</a>
-</div>
+<form method="get" action="/clupload">
+    <input type="submit" value="Column Remover">
+</form>
 <br>
-<div class="row">
-    <a class="action" href="{{ url_for('colclear.clupload')}}">Excel file merger designed for specific
-    file structure</a>
-</div>
+<form method="get" action="/mrgupload">
+    <input type="submit" value="Excel file merger designed for specific file structure">
+</form>
+
+
 {% endblock %}

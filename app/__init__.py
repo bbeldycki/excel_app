@@ -4,9 +4,11 @@ import os
 
 path = "app/filesuploaded"
 path1 = "app/col_rm_final"
+path2 = "app/excelmerged"
 # for pythonanywhere paths
 # path = "/home/Flippy9004/excel_app/app/static/filesuploaded"
 # path1 = "/home/Flippy9004/excel_app/app/static/col_rm_final"
+# path2 = "/home/Flippy9004/excel_app/app/static/excelmerged"
 
 
 def create_app():
@@ -14,6 +16,7 @@ def create_app():
 
     check_catalogs_exist(path)
     check_catalogs_exist(path1)
+    check_catalogs_exist(path2)
 
     app.config['SECRET_KEY'] = 'argagathtrhwtrh'
 
@@ -21,10 +24,14 @@ def create_app():
     def hello():
         check_catalogs_empty(path)
         check_catalogs_empty(path1)
+        check_catalogs_empty(path2)
         return render_template("initial/welcome.html")
 
     from . import col_rm
     app.register_blueprint(col_rm.bp)
+
+    from . import excmerge
+    app.register_blueprint(excmerge.bpp)
 
     return app
 

@@ -1,0 +1,22 @@
+{% extends "exc_mrg/templates/excel_mrg_template.html" %}
+
+{% block title %}
+    Column Remover
+{% endblock %}
+
+{% block main %}
+<form method="get" action="/mrgdownload/{{ filse }}">
+    <input type="submit" value="Download final file!">
+</form>
+{% if filse %}
+    <li>{{ filse }} </li>
+{% endif %}
+<br>
+<form method="get" action="/mrgupload">
+    <input type="submit" value="I want to merge them again!">
+</form>
+<br>
+<form method="get" action="/">
+    <input type="submit" value="Home">
+</form>
+{% endblock %}

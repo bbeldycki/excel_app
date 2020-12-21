@@ -1,0 +1,31 @@
+{% extends "exc_mrg/templates/excel_mrg_template.html" %}
+
+{% block title %}
+    Column Remover
+{% endblock %}
+
+{% block main %}
+<form action="/mrgupload" method="POST" enctype="multipart/form-data">
+    <dl>
+        <input type="file" name="files[]" autocomplete="off" multiple="True"
+                           value="Choose files" required>
+    </dl>
+    <p></p>
+    <input type="submit" value="Upload files">
+</form>
+<br>
+<h4> List of uploaded files </h4>
+{% if wrong %}
+    {% if numfiles %}
+        <p>Wrong number of valid files. There should be at least two .xlsx files.</p>
+    {% endif %}
+{% else %}
+    {% for file in filse %}
+        <li>{{ file }} </li>
+    {% endfor %}
+{% endif %}
+<br>
+<form method="get" action="/mrgremoved">
+    <input type="submit" value="Merge Files!">
+</form>
+{% endblock %}
