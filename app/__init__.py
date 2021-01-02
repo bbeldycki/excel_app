@@ -2,10 +2,11 @@ from flask import Flask, render_template
 import os
 
 
-path = "app/filesuploaded"
-path1 = "app/col_rm_final"
-path2 = "app/excelmerged"
-# for pythonanywhere paths
+# my local paths
+path = os.path.abspath("app/filesuploaded")
+path1 = os.path.abspath("app/col_rm_final")
+path2 = os.path.abspath("app/excelmerged")
+# for my pythonanywhere paths
 # path = "/home/Flippy9004/excel_app/app/static/filesuploaded"
 # path1 = "/home/Flippy9004/excel_app/app/static/col_rm_final"
 # path2 = "/home/Flippy9004/excel_app/app/static/excelmerged"

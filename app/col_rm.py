@@ -8,9 +8,11 @@ bp = Blueprint('colclear', __name__)
 
 allowed_extensions = set(['txt', 'xlsx'])
 
-path = "app/filesuploaded"
-path1 = "app/col_rm_final"
-# for pythonanywhere paths
+
+# local paths
+path = os.path.abspath("app/filesuploaded")
+path1 = os.path.abspath("app/col_rm_final")
+# for my pythonanywhere paths
 # path = "/home/Flippy9004/excel_app/app/static/filesuploaded"
 # path1 = "/home/Flippy9004/excel_app/app/static/col_rm_final"
 
@@ -91,10 +93,10 @@ def removed():
     return render_template("col_rm/removed.html", filse=filename)
 
 
-@bp.route("/download/<string:file_name>")
-def download_file(file_name):
+@bp.route("/download/<path:filename>")
+def download_file(filename):
     try:
-        return send_from_directory("col_rm_final", filename=file_name, as_attachment=True)
+        return send_from_directory(path1, filename=filename, as_attachment=True)
     except FileNotFoundError:
         abort(404)
 
@@ -105,7 +107,7 @@ def get_all_good_headers(txtfile):
     good = []
     for i in dobre:
         good.append(i.strip())
-        return good
+    return good
 
 
 def remove_columns(txtfile, xlsxfile):
@@ -133,7 +135,7 @@ def remove_columns(txtfile, xlsxfile):
         if great:
             sh0.delete_cols(i)
             number_of_columns -= 1
-    finalname = xlsxfile.rsplit(".", 1)
+    finalname = xlsxfile.split(".", 1)
     finale = finalname[0] + "_final.xlsx"
     wbf.save(path1 + '/' + finale)
     os.remove(txtfile)

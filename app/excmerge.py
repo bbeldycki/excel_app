@@ -1,4 +1,4 @@
-from flask import Blueprint, request, flash, redirect, render_template, send_from_directory, abort, send_file
+from flask import Blueprint, request, flash, redirect, render_template, send_from_directory, abort
 from werkzeug.utils import secure_filename
 from pathlib import Path
 import openpyxl as oxl
@@ -9,9 +9,10 @@ bpp = Blueprint('excelmrg', __name__)
 
 allowed_extensions = set(['xlsx'])
 
-path = "app/filesuploaded"
-path1 = "app/excelmerged"
-# for pythonanywhere paths
+# local paths
+path = os.path.abspath("app/filesuploaded")
+path1 = os.path.abspath("app/excelmerged")
+# for my pythonanywhere paths
 # path = "/home/Flippy9004/excel_app/app/static/filesuploaded"
 # path1 = "/home/Flippy9004/excel_app/app/static/excelmerged"
 
